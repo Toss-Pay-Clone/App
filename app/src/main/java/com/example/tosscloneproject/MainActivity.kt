@@ -177,6 +177,8 @@ fun ScrollContent() {
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
         Container5()
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
+        Container6()
+        Spacer(modifier = Modifier.padding(vertical = 20.dp))
 
     }
 }
@@ -448,11 +450,103 @@ fun Container5() {
         Text(text = "대출받기", color = Color(0xFF6B7684), fontSize = 16.sp)
     }
 }
+@Composable
+fun Container6() {
+    // wrapper
+    Column(
+        modifier = Modifier
+            .clip(RoundedCornerShape(20.dp))
+            .background(Color(0xFFFFFFFF)),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = "나희수 님을 위해 준비했어요",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp, 20.dp, 20.dp, 0.dp)
+        )
+        // item1
+        Row(
+            modifier = Modifier
+                .padding(20.dp, 20.dp, 20.dp, 0.dp)
+                .height(45.6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+                Image(
+                    painter = painterResource(id = R.drawable.toss_symbol),
+                    contentDescription = null,
+                )
+                Text("보험 전문가에게 물어보기", fontSize = 16.sp, modifier = Modifier
+                    .weight(1f)
+                    .padding(horizontal = 10.dp)
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.arrow_right),
+                    contentDescription = null,
+                )
 
+        }
+        // item2
+        Row(
+            modifier = Modifier
+                .padding(20.dp, 20.dp, 20.dp, 0.dp)
+                .height(45.6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.toss_symbol),
+                contentDescription = null,
+            )
+            Text("LG U+ 휴대폰 요금제", fontSize = 16.sp, modifier = Modifier
+                .weight(1f)
+                .padding(horizontal = 10.dp)
+            )
+            Image(
+                painter = painterResource(id = R.drawable.arrow_right),
+                contentDescription = null,
+            )
+
+        }
+        // item3
+        Row(
+            modifier = Modifier
+                .padding(20.dp, 20.dp, 20.dp, 0.dp)
+                .height(45.6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.toss_symbol),
+                contentDescription = null,
+            )
+            Text("내 통신 요금", fontSize = 16.sp, modifier = Modifier
+                .weight(1f)
+                .padding(horizontal = 10.dp)
+            )
+            Image(
+                painter = painterResource(id = R.drawable.arrow_right),
+                contentDescription = null,
+            )
+        }
+        Divider(thickness = 1.dp, color = Color(0xFFF2F4F5),
+            modifier = Modifier.padding(20.dp))
+        // item4
+        Row(
+            modifier = Modifier
+                .padding(20.dp, 0.dp, 20.dp, 20.dp)
+        ) {
+            Text(text = "추천 서비스 더보기", color = Color(0xFF6B7684), fontSize = 16.sp)
+            Image(
+                painter = painterResource(id = R.drawable.arrow_right),
+                contentDescription = null,
+            )
+        }
+    }
+}
 @Preview(showBackground = true)
 @Composable
 fun MainViewPreview() {
     TossCloneProjectTheme {
-        Container5()
+        Container6()
     }
 }
