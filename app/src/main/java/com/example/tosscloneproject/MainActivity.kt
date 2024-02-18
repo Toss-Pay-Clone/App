@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -46,6 +47,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -67,7 +69,7 @@ class MainActivity : ComponentActivity() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainPageView() {
-    yScaffold(
+    Scaffold(
         containerColor = Color(0xFFF3F4F6),
         topBar = { TopBar() },
         bottomBar = { BottomNavigationBar() },
@@ -156,6 +158,10 @@ fun ScrollContent() {
             .padding(vertical = 70.dp, horizontal = 20.dp)
             .background(Color(0xFFF2F4F5)),
     ) {
+        Container3()
+        Spacer(modifier = Modifier.padding(vertical = 10.dp))
+        Container4()
+        Spacer(modifier = Modifier.padding(vertical = 10.dp))
         Container1()
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
         Container2()
@@ -355,7 +361,60 @@ fun Container2() {
         }
     }
 }
+@Composable
+fun Container3() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .background(Color(0xFFFFFFFF)),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.Start
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(text = "광고", fontSize = 22.sp, fontWeight = FontWeight.Bold )
+            Image(
+                painter = painterResource(id = R.drawable.arrow_right),
+                contentDescription = null,
 
+                )
+        }
+    }
+}
+@Composable
+fun Container4() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .background(Color(0xFFFFFFFF)),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.Start
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(text = "토스뱅크", fontSize = 22.sp, fontWeight = FontWeight.Bold )
+            Image(
+                painter = painterResource(id = R.drawable.arrow_right),
+                contentDescription = null,
+
+            )
+        }
+    }
+}
 @Preview(showBackground = true)
 @Composable
 fun MainViewPreview() {
