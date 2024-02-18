@@ -1,6 +1,7 @@
 package com.example.tosscloneproject
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,10 +26,12 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.BottomAppBar
@@ -179,6 +182,8 @@ fun ScrollContent() {
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
         Container6()
         Spacer(modifier = Modifier.padding(vertical = 20.dp))
+        Container7()
+        Spacer(modifier = Modifier.padding(vertical = 30.dp))
 
     }
 }
@@ -463,8 +468,8 @@ fun Container6() {
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
-            .fillMaxWidth()
-            .padding(20.dp, 20.dp, 20.dp, 0.dp)
+                .fillMaxWidth()
+                .padding(20.dp, 20.dp, 20.dp, 0.dp)
         )
         // item1
         Row(
@@ -543,10 +548,68 @@ fun Container6() {
         }
     }
 }
+@Composable
+fun Container7() {
+    Row(
+        modifier = Modifier
+            .height(50.dp)
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        Button(
+            onClick = {},
+            contentPadding = PaddingValues(8.dp),
+            modifier = Modifier
+                .fillMaxHeight(),
+            shape = RoundedCornerShape(25),
+            colors = ButtonDefaults.buttonColors(
+                Color(0xFF000000), Color(0xFFFFFFFF)
+            )
+        ) {
+            Icon(
+                Icons.Filled.Settings,
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+            )
+            Text(
+                text = "화면 설정",
+                style = TextStyle(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp
+                ), modifier = Modifier.padding(end = 8.dp)
+            )
+        }
+        Button(
+            onClick = {},
+            contentPadding = PaddingValues(8.dp),
+            modifier = Modifier
+                .fillMaxHeight(),
+            shape = RoundedCornerShape(25),
+            colors = ButtonDefaults.buttonColors(
+                Color(0xFF000000), Color(0xFFFFFFFF)
+            )
+        ) {
+            Icon(
+                Icons.Filled.Add,
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+            )
+            Text(
+                text = "자산 추가",
+                style = TextStyle(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp
+                ), modifier = Modifier.padding(end = 8.dp)
+            )
+        }
+    }
+}
 @Preview(showBackground = true)
 @Composable
 fun MainViewPreview() {
     TossCloneProjectTheme {
-        Container6()
+        Container7()
     }
 }
