@@ -184,7 +184,8 @@ fun ScrollContent() {
         Spacer(modifier = Modifier.padding(vertical = 20.dp))
         Container7()
         Spacer(modifier = Modifier.padding(vertical = 30.dp))
-
+        Container8()
+        Spacer(modifier = Modifier.padding(vertical = 30.dp))
     }
 }
 @Composable
@@ -606,10 +607,19 @@ fun Container7() {
         }
     }
 }
+@Composable
+fun Container8() {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Text(text = "개인정보처리방침 보기",)
+    }
+}
 @Preview(showBackground = true)
 @Composable
 fun MainViewPreview() {
     TossCloneProjectTheme {
-        Container7()
+        Container8()
     }
 }
