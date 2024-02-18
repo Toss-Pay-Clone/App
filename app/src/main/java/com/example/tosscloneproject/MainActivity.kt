@@ -11,12 +11,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
@@ -26,6 +31,7 @@ import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -117,36 +123,38 @@ fun BottomNavigationBar() {
         Icons.Filled.Send,
         Icons.Filled.Menu
     )
-
     var selectedItem by remember { mutableStateOf(0) }
 
-    BottomNavigation(
+    BottomAppBar(
         modifier = Modifier
-            .height(100.dp)
-            .fillMaxWidth()
             .clip(RoundedCornerShape(30.dp, 30.dp, 0.dp, 0.dp)),
-        backgroundColor = Color.White,
-        contentColor = Color.Blue
-    ) {
-        items.forEachIndexed { index, item ->
-            BottomNavigationItem(
-                icon = {
-                       Icon(
-                           icons[index],
-                           contentDescription = null,
-                           modifier = Modifier
-                               .padding(vertical = 4.dp)
-                               .size(30.dp),
-                           tint = Color(0xFF9898A1)
-                       )
-                },
-                label = { Text(item,
-                    fontSize = 13.sp,
-                    modifier = Modifier
-                        .padding(bottom= 18.dp)) },
-                selected = selectedItem == index,
-                onClick = { selectedItem = index}
-            )
+        ) {
+        BottomNavigation(
+            modifier = Modifier
+                .fillMaxSize()
+                .clip(RoundedCornerShape(30.dp, 30.dp, 0.dp, 0.dp)),
+            backgroundColor = Color.White,
+        ) {
+            items.forEachIndexed { index, item ->
+                BottomNavigationItem(
+                    icon = {
+                        Icon(
+                            icons[index],
+                            contentDescription = null,
+                            modifier = Modifier
+                                .padding(vertical = 4.dp)
+                                .size(30.dp),
+                            tint = Color(0xFF9898A1)
+                        )
+                    },
+                    label = { Text(item,
+                        fontSize = 13.sp,
+                        modifier = Modifier
+                            .padding(bottom= 18.dp)) },
+                    selected = selectedItem == index,
+                    onClick = { selectedItem = index}
+                )
+            }
         }
     }
 }
@@ -155,9 +163,10 @@ fun BottomNavigationBar() {
 fun ScrollContent() {
     Column(
         modifier = Modifier
+            .verticalScroll(rememberScrollState())
             .padding(vertical = 70.dp, horizontal = 20.dp)
             .background(Color(0xFFF2F4F5)),
-    ) {
+        ) {
         Container3()
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
         Container4()
@@ -165,9 +174,12 @@ fun ScrollContent() {
         Container1()
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
         Container2()
+        Spacer(modifier = Modifier.padding(vertical = 10.dp))
+        Container5()
+        Spacer(modifier = Modifier.padding(vertical = 10.dp))
+
     }
 }
-
 @Composable
 fun Container1() {
     // wrapper
@@ -291,7 +303,6 @@ fun Container1() {
         }
     }
 }
-
 @Composable
 fun Container2() {
     Column(
@@ -415,10 +426,33 @@ fun Container4() {
         }
     }
 }
+@Composable
+fun Container5() {
+    Row(
+        modifier = Modifier
+            .height(60.dp)
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(Color.White),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        Text(text = "계좌개설", color = Color(0xFF6B7684), fontSize = 16.sp)
+        Divider(color = Color(0xFF6B7684), modifier = Modifier
+            .height(18.dp)
+            .width(1.dp))
+        Text(text = "카드발급", color = Color(0xFF6B7684), fontSize = 16.sp)
+        Divider(color = Color(0xFF6B7684), modifier = Modifier
+            .height(18.dp)
+            .width(1.dp))
+        Text(text = "대출받기", color = Color(0xFF6B7684), fontSize = 16.sp)
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun MainViewPreview() {
     TossCloneProjectTheme {
-        MainPageView()
+        Container5()
     }
 }
