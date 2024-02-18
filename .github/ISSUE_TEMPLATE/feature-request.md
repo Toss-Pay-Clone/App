@@ -4,7 +4,6 @@ about: 기능 설명 및 구현
 title: "[feat]"
 labels: "기능구현"
 assignees: ''
-
 ---
 
 ## ✨ 구현 할 기능
