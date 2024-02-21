@@ -29,19 +29,18 @@ import com.example.tosscloneproject.ui.theme.TossBlue
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserInput (inputplaceholder:String) {
-    var UserName by remember { mutableStateOf(TextFieldValue()) }
+    var userName by remember { mutableStateOf("") }
     val typography = MaterialTheme.typography
 
     TextField(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(end = 28.dp),
-        value = UserName,
-        onValueChange = { newValue -> UserName = newValue },
+            .fillMaxWidth(),
+        value = userName,
+        onValueChange = { newValue -> userName = newValue },
         placeholder = { Text(text = "$inputplaceholder", style = typography.labelMedium, color = TextColor1) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-        trailingIcon = { IconButton(onClick = { UserName = TextFieldValue() }) {
+        trailingIcon = { IconButton(onClick = { userName = "" }) {
             Icon(painter = painterResource(id = R.drawable.clear), contentDescription = null)
         }
         },

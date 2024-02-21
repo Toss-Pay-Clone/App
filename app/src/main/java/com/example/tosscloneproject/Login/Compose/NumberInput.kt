@@ -28,7 +28,32 @@ import com.example.tosscloneproject.ui.theme.TossBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NumberInput (inputplaceholder:String, TrailingIcon: Boolean = true) {
+fun NumberInput (inputplaceholder:String) {
+    var phoneNumber by remember { mutableStateOf(TextFieldValue()) }
+    val typography = MaterialTheme.typography
+
+    TextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = phoneNumber,
+        onValueChange = { newValue -> phoneNumber = newValue },
+        placeholder = { Text(text = "$inputplaceholder", style = typography.labelMedium, color = TextColor1) },
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+        textStyle = typography.labelMedium,
+        colors = TextFieldDefaults.textFieldColors(
+            unfocusedTrailingIconColor = TextColor1,
+            focusedTrailingIconColor = TextColor1,
+            containerColor = Color.Transparent,
+            unfocusedIndicatorColor = TextColor1,
+            focusedIndicatorColor = TossBlue,
+            focusedTextColor = TextBlack
+        )
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PhonenumberInput (inputplaceholder:String, TrailingIcon: Boolean = true) {
     var phoneNumber by remember { mutableStateOf(TextFieldValue()) }
     val typography = MaterialTheme.typography
 
