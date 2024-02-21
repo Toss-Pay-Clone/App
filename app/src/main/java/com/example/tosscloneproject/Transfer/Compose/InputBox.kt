@@ -40,7 +40,6 @@ fun InputBoxUnderlineVersion(placeHolder: String) {
         textStyle = TextStyle(fontSize = 18.sp),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 10.dp)
             .height(50.dp),
     ) {
         Row(verticalAlignment = Alignment.Bottom) {
@@ -100,7 +99,7 @@ fun InputBoxRectVersion(placeHolder: String) {
         shape = MaterialTheme.shapes.small,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 10.dp, vertical = 5.dp)
+            .padding(vertical = 5.dp)
             .height(40.dp),
         color = Color.LightGray,
     ) {

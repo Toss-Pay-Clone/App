@@ -38,10 +38,10 @@ fun TransferSelectPage(modifier: Modifier = Modifier) {
             }
 
             if (isAccountMode.value)
-                Column(Modifier.padding(vertical = 5.dp)) {
+                Column(Modifier.padding(horizontal = 10.dp, vertical = 5.dp)) {
                     InputBoxUnderlineVersion(placeHolder = "계좌번호 입력")
                     Spacer(modifier = Modifier.height(40.dp))
-                    Column(Modifier.padding(horizontal = 10.dp)) {
+                    Column {
                         MyAccount()
                         Spacer(modifier = Modifier.padding(vertical = 5.dp))
                         AccountListItem(
@@ -69,11 +69,11 @@ fun TransferSelectPage(modifier: Modifier = Modifier) {
                     }
                 }
             else {
-                Column(Modifier.padding(vertical = 5.dp)) {
+                Column(Modifier.padding(horizontal = 10.dp, vertical = 5.dp)) {
                     Spacer(modifier = Modifier.height(10.dp))
                     InputBoxRectVersion("검색/직접 입력")
                     Spacer(modifier = Modifier.height(10.dp))
-                    Column(Modifier.padding(horizontal = 10.dp)) {
+                    Column {
                         ContactListItem(
                             "홍길동",
                             "010-1234-5678"
