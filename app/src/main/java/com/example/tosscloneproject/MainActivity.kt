@@ -69,6 +69,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TossCloneProjectTheme {
+
                 MainPageView()
             }
         }
