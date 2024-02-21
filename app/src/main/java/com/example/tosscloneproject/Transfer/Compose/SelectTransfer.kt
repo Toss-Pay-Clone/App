@@ -22,11 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
-fun SelectTransfer() {
-    val isAccountMode = remember {
-        mutableStateOf(true)
-    }
-
+fun SelectTransfer(isAccountMode: Boolean, onChange: (Boolean) -> Unit) {
     Column(
         Modifier
             .padding(horizontal = 10.dp)
@@ -46,8 +42,8 @@ fun SelectTransfer() {
                     modifier = Modifier
                         .padding(3.dp)
                         .weight(1f),
-                    color = if (isAccountMode.value) Color.White else Color.LightGray,
-                    onClick = { isAccountMode.value = true },
+                    color = if (isAccountMode) Color.White else Color.LightGray,
+                    onClick = { onChange(true) },
                 ) {
                     Text(
                         text = "계좌",
@@ -61,8 +57,8 @@ fun SelectTransfer() {
                     modifier = Modifier
                         .padding(3.dp)
                         .weight(1f),
-                    color = if (isAccountMode.value) Color.LightGray else Color.White,
-                    onClick = { isAccountMode.value = false },
+                    color = if (isAccountMode) Color.LightGray else Color.White,
+                    onClick = { onChange(false) },
                 ) {
                     Text(
                         text = "연락처",
@@ -80,6 +76,12 @@ fun SelectTransfer() {
 @Composable
 fun SelectTransferPreview() {
     TossCloneProjectTheme {
-        SelectTransfer()
+        var isAccountMode = remember {
+            mutableStateOf(true)
+        }
+
+        SelectTransfer(isAccountMode.value) { newValue ->
+            isAccountMode.value = newValue
+        }
     }
 }
