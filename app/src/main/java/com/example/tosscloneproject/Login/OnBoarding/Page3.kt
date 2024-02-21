@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.tosscloneproject.Login.Compose.PhonenumberInput
 import com.example.tosscloneproject.ui.theme.TextColor2
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
@@ -24,8 +25,7 @@ fun Page3 () {
         Page3TextContainer()
         Spacer(modifier = Modifier.height(40.dp))
         Box(modifier = Modifier.padding(start = 28.dp, end = 28.dp)){
-            com.example.tosscloneproject.Login.Compose.NumberInput(
-                inputplaceholder = "휴대폰 번호")
+            PhonenumberInput(inputplaceholder = "휴대폰 번호")
         }
         Spacer(modifier = Modifier.height(40.dp))
     }
