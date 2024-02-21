@@ -21,7 +21,7 @@ val Typography = Typography(
     titleLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
-        fontSize = 30.sp,
+        fontSize = 27.sp,
         lineHeight = 35.sp,
         color = TextBlack
     ),
