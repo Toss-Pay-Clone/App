@@ -1,4 +1,4 @@
-package com.example.tosscloneproject.Login.Login
+package com.example.tosscloneproject.Login.Register
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,14 +14,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.tosscloneproject.Login.Compose.Button
 import com.example.tosscloneproject.Login.Compose.UserInput
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
-class Login : ComponentActivity() {
+class Name : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -41,13 +46,14 @@ class Login : ComponentActivity() {
 @Composable
 fun NamePage() {
     val typography = MaterialTheme.typography
+    var userName by remember { mutableStateOf("") }
 
     Column (modifier = Modifier.fillMaxSize()){
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 28.dp, top = 84.dp)
+                .padding(start = 28.dp, end = 28.dp, top = 84.dp)
         ) {
 
             Text(
@@ -64,7 +70,7 @@ fun NamePage() {
 
         Spacer(modifier = Modifier.weight(1f))
 
-        com.example.tosscloneproject.Login.Compose.Button(
+        Button(
             buttonText = "확인",
             paddingValues = PaddingValues(start = 180.dp, end = 180.dp, top = 21.dp, bottom = 21.dp),
             shape = RectangleShape
@@ -75,7 +81,7 @@ fun NamePage() {
 
 @Preview(showBackground = true)
 @Composable
-fun LoginPreview() {
+fun NamePreview() {
     TossCloneProjectTheme {
 
         NamePage()
