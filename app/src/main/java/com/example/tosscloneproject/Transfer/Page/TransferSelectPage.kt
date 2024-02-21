@@ -23,7 +23,7 @@ import com.example.tosscloneproject.Transfer.Compose.TransferHeader
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
-fun Account(modifier: Modifier = Modifier) {
+fun TransferSelectPage(modifier: Modifier = Modifier) {
     var isAccountMode = remember {
         mutableStateOf(true)
     }
@@ -71,7 +71,7 @@ fun Account(modifier: Modifier = Modifier) {
             else {
                 Column(Modifier.padding(vertical = 5.dp)) {
                     Spacer(modifier = Modifier.height(10.dp))
-                    InputBoxRectVersion(placeHolder = "계좌번호 입력")
+                    InputBoxRectVersion("검색/직접 입력")
                     Spacer(modifier = Modifier.height(10.dp))
                     Column(Modifier.padding(horizontal = 10.dp)) {
                         ContactListItem(
@@ -91,8 +91,8 @@ fun Account(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun AccountPreview() {
+fun TransferSelectPagePreview() {
     TossCloneProjectTheme {
-        Account()
+        TransferSelectPage()
     }
 }

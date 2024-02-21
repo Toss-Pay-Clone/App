@@ -12,10 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -28,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -121,7 +116,9 @@ fun InputBoxRectVersion(placeHolder: String) {
                 Image(
                     painter = painterResource(R.drawable.transfer_input_search),
                     contentDescription = "search",
-                    Modifier.padding(end = 8.dp).size(20.dp),
+                    Modifier
+                        .padding(end = 8.dp)
+                        .size(20.dp),
                 )
                 when {
                     textState.value.isEmpty() -> {
@@ -132,20 +129,24 @@ fun InputBoxRectVersion(placeHolder: String) {
                         )
                     }
                     else -> {
-                        Text(
-                            text = textState.value,
-                            maxLines = 1,
-                            fontSize = 14.sp,
-                            modifier = Modifier.width(300.dp),
-                        )
-                        Surface(
-                            shape = MaterialTheme.shapes.large,
-                            modifier = Modifier
-                                .size(20.dp)
-                                .align(Alignment.CenterVertically),
-                            color = Color.Gray,
-                            onClick = { textState.value = "" }
-                        ) {}
+                        Row(
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Text(
+                                text = textState.value,
+                                maxLines = 1,
+                                fontSize = 14.sp,
+                            )
+                            Surface(
+                                shape = MaterialTheme.shapes.large,
+                                modifier = Modifier
+                                    .size(20.dp)
+                                    .align(Alignment.CenterVertically),
+                                color = Color.Gray,
+                                onClick = { textState.value = "" }
+                            ) {}
+                        }
                     }
                 }
             }
