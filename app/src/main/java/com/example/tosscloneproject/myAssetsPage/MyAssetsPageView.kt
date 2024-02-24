@@ -5,15 +5,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
-fun MyAssetsPageView() {
+fun MyAssetsPageView(navController: NavHostController)
+{
     Column(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        TopBar()
+        TopBar(navController = navController)
         Container1()
         Container2()
     }
@@ -23,6 +26,7 @@ fun MyAssetsPageView() {
 @Composable
 fun MyAssetsPagePreview() {
     TossCloneProjectTheme {
-        MyAssetsPageView()
+        val navController = rememberNavController()
+        MyAssetsPageView(navController = navController)
     }
 }

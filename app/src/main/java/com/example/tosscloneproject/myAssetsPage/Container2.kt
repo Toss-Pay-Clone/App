@@ -12,6 +12,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,6 +27,8 @@ import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
 fun Container2() {
+    var showBottomSheet by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .background(Color.White)
@@ -47,7 +53,9 @@ fun Container2() {
                     .weight(1f)
                     .padding(start = 10.dp))
             IconButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    showBottomSheet = true
+                }
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.arrow_right),
@@ -77,6 +85,11 @@ fun Container2() {
                     contentDescription = null)
             }
         }
+    }
+    if (showBottomSheet) {
+        AddAsset(
+            isSheetOpen = { showBottomSheet = false }
+        )
     }
 }
 @Preview(showBackground = true)

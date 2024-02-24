@@ -2,6 +2,7 @@ package com.example.tosscloneproject.myAssetsPage
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,11 +16,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.tosscloneproject.R
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
-fun TopBar() {
+fun TopBar(navController: NavHostController) {
     Column(modifier = Modifier
         .fillMaxWidth()
         .height(120.dp)
@@ -33,6 +36,10 @@ fun TopBar() {
             Image(
                 painter = painterResource(id = R.drawable.arrow_left),
                 contentDescription = null,
+                modifier = Modifier
+                    .clickable {
+                    navController.navigate("mainPage") // 뒤로가기
+                }
             )
             Text(text = "편집")
         }
@@ -51,6 +58,7 @@ fun TopBar() {
 @Composable
 fun TopBarPreview() {
     TossCloneProjectTheme {
-        TopBar()
+        val navController = rememberNavController()
+        TopBar(navController = navController)
     }
 }
