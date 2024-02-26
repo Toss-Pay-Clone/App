@@ -18,7 +18,7 @@ fun MyAssetsPageView(navController: NavHostController)
     ) {
         TopBar(navController = navController)
         Container1()
-        Container2()
+        Container2(navController = navController)
     }
 }
 

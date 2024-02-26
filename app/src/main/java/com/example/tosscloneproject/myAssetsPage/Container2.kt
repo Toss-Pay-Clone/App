@@ -22,11 +22,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.tosscloneproject.R
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
-fun Container2() {
+fun Container2(navController: NavHostController) {
     var showBottomSheet by remember { mutableStateOf(false) }
 
     Column(
@@ -88,6 +89,7 @@ fun Container2() {
     }
     if (showBottomSheet) {
         AddAsset(
+            navController = navController,
             isSheetOpen = { showBottomSheet = false }
         )
     }
@@ -96,6 +98,6 @@ fun Container2() {
 @Composable
 fun Container2Preview() {
     TossCloneProjectTheme {
-        Container2()
+//        Container2()
     }
 }

@@ -1,6 +1,7 @@
 package com.example.tosscloneproject.myAssetsPage
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,12 +21,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.tosscloneproject.R
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddAsset( isSheetOpen: () -> Unit) {
+fun AddAsset(navController: NavHostController, isSheetOpen: () -> Unit) {
     val sheetState = rememberModalBottomSheetState()
 
     ModalBottomSheet(
@@ -34,11 +37,11 @@ fun AddAsset( isSheetOpen: () -> Unit) {
         containerColor = Color.White,
     ) {
         // Sheet content
-        AssetList()
+        AssetList(navController = navController)
     }
 }
 @Composable
-fun AssetList() {
+fun AssetList(navController: NavHostController) {
     Column(
         modifier = Modifier
             .width(340.dp)
@@ -51,6 +54,9 @@ fun AssetList() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .clickable {
+                    navController.navigate(route = "SelectBank") // 은행선택으로 이동
+                }
         ) {
             Image(
                 painter = painterResource(id = R.drawable.toss_symbol),
@@ -142,6 +148,7 @@ fun AssetList() {
 @Preview(showBackground = true)
 fun AddAssetPreview() {
     TossCloneProjectTheme {
-        AssetList()
+        val navController = rememberNavController()
+        AssetList(navController = navController)
     }
 }
