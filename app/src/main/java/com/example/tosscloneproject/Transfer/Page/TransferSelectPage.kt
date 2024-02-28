@@ -15,11 +15,11 @@ import androidx.compose.ui.unit.dp
 import com.example.tosscloneproject.Transfer.Compose.AccountListItem
 import com.example.tosscloneproject.Transfer.Compose.ContactListItem
 import com.example.tosscloneproject.Transfer.Compose.InputBoxRectVersion
-import com.example.tosscloneproject.Transfer.Compose.InputBoxUnderlineVersion
 import com.example.tosscloneproject.Transfer.Compose.MyAccount
 import com.example.tosscloneproject.Transfer.Compose.RecentlyAccount
 import com.example.tosscloneproject.Transfer.Compose.SelectTransfer
 import com.example.tosscloneproject.Transfer.Compose.TransferHeader
+import com.example.tosscloneproject.Transfer.Compose.inputBoxUnderlineVersion
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
@@ -39,7 +39,7 @@ fun TransferSelectPage(modifier: Modifier = Modifier) {
 
             if (isAccountMode.value)
                 Column(Modifier.padding(horizontal = 10.dp, vertical = 5.dp)) {
-                    InputBoxUnderlineVersion(placeHolder = "계좌번호 입력")
+                    inputBoxUnderlineVersion(placeHolder = "계좌번호 입력")
                     Spacer(modifier = Modifier.height(40.dp))
                     Column {
                         MyAccount()
