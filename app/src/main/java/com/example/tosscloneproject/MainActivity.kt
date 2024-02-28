@@ -2,9 +2,11 @@ package com.example.tosscloneproject
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.Icon
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -23,8 +25,8 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
+//import androidx.compose.material.BottomNavigation
+//import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
@@ -61,22 +63,32 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.tosscloneproject.Consumption.ConsumptionPage
 import com.example.tosscloneproject.mainPage.MainPageView
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             TossCloneProjectTheme {
 
-                MainPageView()
+                ConsumptionPage()
             }
         }
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    TossCloneProjectTheme {
 
+        ConsumptionPage()
+    }
+}
 
 
 
