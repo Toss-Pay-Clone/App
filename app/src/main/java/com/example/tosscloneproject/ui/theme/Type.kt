@@ -4,6 +4,7 @@ package com.example.tosscloneproject.ui.theme
 import androidx.compose.material3.Typography
 //import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 //import androidx.compose.ui.unit.dp
@@ -24,6 +25,12 @@ val Typography = Typography(
         fontSize = 27.sp,
         lineHeight = 35.sp,
         color = TextBlack
+    ),
+    bodyLarge = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 25.sp,
+        lineHeight = 35.sp
     ),
     bodyMedium = TextStyle(
         fontFamily = FontFamily.Default,
