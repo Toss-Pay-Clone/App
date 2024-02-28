@@ -16,3 +16,4 @@ val TextColor1 = Color(0xffADB3BA) // subtitle
 val TextColor2 = Color(0xff6C7684) // 부연설명
 val TextColor3 = Color(0xff323D4C) //
 val TextBlack = Color(0xff191F28) // 본문, 타이틀
+val ContainerColor = Color(0xFFF3F4F6) // background color

@@ -8,6 +8,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 //import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.w3c.dom.Text
 
 // Set of Material typography styles to start with
 val Typography = Typography(
@@ -23,6 +24,12 @@ val Typography = Typography(
         fontWeight = FontWeight.Bold,
         fontSize = 27.sp,
         lineHeight = 35.sp,
+        color = TextBlack
+    ),
+    bodyLarge = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp,
         color = TextBlack
     ),
     bodyMedium = TextStyle(
