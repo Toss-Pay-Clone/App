@@ -4,10 +4,13 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.tosscloneproject.connectConfirm.ConnectConfirmView1
 import com.example.tosscloneproject.mainPage.MainPageView
 import com.example.tosscloneproject.myAssetsPage.AssetList
 import com.example.tosscloneproject.myAssetsPage.MyAssetsPageView
+import com.example.tosscloneproject.publicComposable.CheckPassword
 import com.example.tosscloneproject.selectBank.SelectBankView
+import com.example.tosscloneproject.tossCertification.TossCertificationView
 
 @Composable
 fun NavigationGraph() {
@@ -27,6 +30,12 @@ fun NavigationGraph() {
         }
         composable("SelectBank") {
             SelectBankView(navController = navController) // 은행 선택 페이지
+        }
+        composable("TossCertification") {
+            TossCertificationView(navController = navController)
+        }
+        composable("ConnectConfirm1") {
+            ConnectConfirmView1(navController = navController)
         }
     }
 }
