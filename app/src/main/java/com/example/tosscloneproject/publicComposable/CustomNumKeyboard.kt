@@ -1,4 +1,4 @@
-package com.example.tosscloneproject//package com.example.tosscloneproject
+package com.example.tosscloneproject.publicComposable//package com.example.tosscloneproject
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

@@ -1,4 +1,4 @@
-package com.example.tosscloneproject
+package com.example.tosscloneproject.publicComposable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.tosscloneproject.R
 import com.example.tosscloneproject.ui.theme.TextColor2
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
