@@ -1,6 +1,7 @@
 package com.example.tosscloneproject.Transfer.Page
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -13,17 +14,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -36,8 +41,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import com.example.tosscloneproject.R
+import com.example.tosscloneproject.Transfer.Compose.InputBoxCleanVersion
 import com.example.tosscloneproject.Transfer.Compose.TransferHeader
-import com.example.tosscloneproject.Transfer.Compose.inputBoxCleanVersion
 import com.example.tosscloneproject.Transfer.ViewModel.TransferAmountVM
 import com.example.tosscloneproject.Transfer.ViewModel.TransferAmountVMFactory
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
@@ -147,8 +153,9 @@ fun TransferAmountPage() {
                     SubTitleText(remittanceName, "님에게", remittanceAccount)
                     Spacer(Modifier.padding(vertical = 10.dp))
 //                    InputBoxCleanVersion(placeHolder = "얼마나 보낼까요?", transferAmountVM)
-                    amount.value = amount.value.copy(
-                        inputBoxCleanVersion(placeHolder = "얼마나 보낼까요?", value = amount.value.text))
+                    InputBoxCleanVersion(placeHolder = "얼마나 보낼까요?", value = amount.value.text) { newText ->
+                        amount.value = amount.value.copy(newText)
+                    }
                     Spacer(Modifier.padding(vertical = 10.dp))
                     Surface(
                         shape = MaterialTheme.shapes.medium,
@@ -158,7 +165,6 @@ fun TransferAmountPage() {
                         onClick = {
 //                            transferAmountVM.setAmount(accountBalance)
                             amount.value = amount.value.copy(text = accountBalance)
-                            println(amount.value.text)
                         }
                     ) {
                         Text(
@@ -316,5 +322,80 @@ fun TransferAmountCheck(amount: String, onClick: () -> Unit) {
 fun TransferAmountCheckPreview() {
     TossCloneProjectTheme {
         TransferAmountCheck("123,000", {})
+    }
+}
+
+@Composable
+fun TransferSuccessPage(amount: String, onClick: () -> Unit) {
+    val labelStyle = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        // 상단부
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(400.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Row(
+                modifier = Modifier.fillMaxHeight(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_launcher_background),
+                        contentDescription = "success",
+                        modifier = Modifier.size(100.dp))
+                    Row {
+                        Text(
+                            text = remittanceName,
+                            style = labelStyle
+                        )
+                        Text(text = "으로", style = labelStyle)
+                    }
+                    Text(text = "${amount}원을", style = labelStyle)
+                    Text(text = "옮겼어요", style = labelStyle)
+                }
+            }
+        }
+
+        // 하단부
+        Surface(
+            shape = MaterialTheme.shapes.medium,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(70.dp)
+                .padding(vertical = 10.dp)
+                .align(Alignment.CenterHorizontally)
+                .clickable {
+                    onClick()
+                },
+            color = Color(0xFF0077FF)
+        ) {
+            Text(
+                text = "확인",
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 15.dp),
+                textAlign = TextAlign.Center,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TransferSuccessPagePreview() {
+    TossCloneProjectTheme {
+        TransferSuccessPage(amount = "123,000") {
+            
+        }
     }
 }

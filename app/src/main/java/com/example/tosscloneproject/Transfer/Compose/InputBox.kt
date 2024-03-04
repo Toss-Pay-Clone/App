@@ -213,11 +213,7 @@ fun InputBoxRectVersion(placeHolder: String) {
 }
 
 @Composable
-fun inputBoxCleanVersion(placeHolder: String, value: String): String {
-    val textState = remember {
-        mutableStateOf(value)
-    }
-
+fun InputBoxCleanVersion(placeHolder: String, value: String, onTextChange: (newText: String) -> Unit) {
     Surface(
         shape = MaterialTheme.shapes.small,
         modifier = Modifier
@@ -225,17 +221,17 @@ fun inputBoxCleanVersion(placeHolder: String, value: String): String {
             .height(40.dp),
     ) {
         BasicTextField(
-            value = textState.value,
+            value = value,
             onValueChange = { newText ->
                 if (newText.isDigitsOnly()) {
-                    textState.value = newText
+                    onTextChange(newText)
                 }
             },
             textStyle = TextStyle(fontSize = 24.sp),
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            when(textState.value) {
+            when(value) {
                 "" -> {
                     Text(
                         text = placeHolder,
@@ -246,7 +242,7 @@ fun inputBoxCleanVersion(placeHolder: String, value: String): String {
                 }
                 else -> {
                     Text(
-                        text = textState.value + "원",
+                        text = value + "원",
                         maxLines = 1,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
@@ -255,7 +251,6 @@ fun inputBoxCleanVersion(placeHolder: String, value: String): String {
             }
         }
     }
-    return textState.value
 }
 
 @Preview(showBackground = true)
@@ -286,6 +281,6 @@ fun InputBoxRectVersionPreview() {
 @Composable
 fun InputBoxCleanVersionPreview() {
     TossCloneProjectTheme {
-        inputBoxCleanVersion("얼마나 보낼까요?", "")
+        InputBoxCleanVersion("얼마나 보낼까요?", "", {})
     }
 }
