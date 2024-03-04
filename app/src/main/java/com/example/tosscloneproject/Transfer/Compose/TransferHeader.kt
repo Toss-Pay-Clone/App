@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.tosscloneproject.R
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
@@ -37,7 +38,7 @@ fun TransferHeader(location: String) {
         }
         if (location != "") {
             Spacer(modifier = Modifier.width(20.dp))
-            Text(text = location, modifier = Modifier.height(24.dp))
+            Text(text = location, modifier = Modifier.height(24.dp), fontSize = 16.sp)
         }
     }
 }

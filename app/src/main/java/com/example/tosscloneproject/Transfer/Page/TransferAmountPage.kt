@@ -39,11 +39,13 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.tosscloneproject.R
 import com.example.tosscloneproject.Transfer.Compose.InputBoxCleanVersion
 import com.example.tosscloneproject.Transfer.Compose.TransferHeader
+import com.example.tosscloneproject.Transfer.Function.formattedNumber
 import com.example.tosscloneproject.Transfer.ViewModel.TransferAmountVM
 import com.example.tosscloneproject.Transfer.ViewModel.TransferAmountVMFactory
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
@@ -71,20 +73,6 @@ val myAccount = "[본인 계좌번호]"
 val accountBalance = "123000"
 val remittanceName = "[송금 대상]"
 val remittanceAccount = "[송금 계좌]"
-
-@Composable
-fun formattedNumber(number: String): String {
-    val formattedString = NumberFormat.getNumberInstance(Locale.getDefault()).format(number.toLong())
-    val annotatedString = buildAnnotatedString {
-        append(formattedString)
-        addStyle(
-            style = SpanStyle(textDecoration = TextDecoration.None),
-            start = 0,
-            end = length
-        )
-    }
-    return annotatedString.toString()
-}
 
 @Composable
 fun SubTitleText(titleMain: String, titleSub: String, context: String) {
@@ -194,7 +182,8 @@ fun TransferAmountPage() {
                             .fillMaxSize()
                             .padding(top = 12.dp),
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = Color.White,
+                        fontSize = 15.sp
                     )
                 }
             }
@@ -239,7 +228,7 @@ fun TransferAmountCheck(amount: String, onClick: () -> Unit) {
                         )
                         Text(text = "으로", style = labelStyle)
                     }
-                    Text(text = "${amount}원을", style = labelStyle)
+                    Text(text = "${if (amount.isDigitsOnly()) formattedNumber(amount) else amount}원을", style = labelStyle)
                     Text(text = "옮길까요?", style = labelStyle)
                 }
             }
@@ -321,7 +310,7 @@ fun TransferAmountCheck(amount: String, onClick: () -> Unit) {
 @Composable
 fun TransferAmountCheckPreview() {
     TossCloneProjectTheme {
-        TransferAmountCheck("123,000", {})
+        TransferAmountCheck("123,000") {}
     }
 }
 
@@ -347,9 +336,9 @@ fun TransferSuccessPage(amount: String, onClick: () -> Unit) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ic_launcher_background),
+                        painter = painterResource(id = R.drawable.icon_success),
                         contentDescription = "success",
-                        modifier = Modifier.size(100.dp))
+                        modifier = Modifier.size(120.dp).padding(10.dp))
                     Row {
                         Text(
                             text = remittanceName,

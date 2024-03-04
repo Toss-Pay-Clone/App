@@ -2,6 +2,7 @@ package com.example.tosscloneproject.Transfer.Compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -33,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.text.isDigitsOnly
 import com.example.tosscloneproject.R
+import com.example.tosscloneproject.Transfer.Function.formattedNumber
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
@@ -54,6 +57,7 @@ fun inputBoxUnderlineVersion(placeHolder: String): String {
                         Text(
                             text = placeHolder,
                             fontSize = 16.sp,
+                            fontWeight = FontWeight.Normal,
                             color = Color.Gray,
                         )
                     }
@@ -61,7 +65,8 @@ fun inputBoxUnderlineVersion(placeHolder: String): String {
                         Text(
                             text = placeHolder,
                             fontSize = 10.sp,
-                            color = Color.Blue,
+                            fontWeight = FontWeight.Medium,
+                            color = Color(0xFF297EF9),
                             modifier = Modifier.padding(bottom = 5.dp)
                         )
                         Row(
@@ -70,19 +75,22 @@ fun inputBoxUnderlineVersion(placeHolder: String): String {
                         ) {
                             Text(
                                 text = textState.value,
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Normal,
                                 maxLines = 1,
                                 modifier = Modifier.widthIn(240.dp, 350.dp),
                             )
                             Surface(
                                 shape = MaterialTheme.shapes.large,
                                 modifier = Modifier
-                                    .width(40.dp)
+                                    .width(30.dp)
                                     .height(20.dp)
-                                    .align(Alignment.CenterVertically)
-                                    .padding(horizontal = 10.dp),
-                                color = Color.Gray,
+                                    .padding(end = 10.dp)
+                                    .align(Alignment.CenterVertically),
                                 onClick = { textState.value = "" }
-                            ) {}
+                            ) {
+                                Image(painter = painterResource(id = R.drawable.clear), contentDescription = "clear")
+                            }
                         }
                     }
                 }
@@ -90,7 +98,11 @@ fun inputBoxUnderlineVersion(placeHolder: String): String {
                     .padding(top = 4.dp)
                     .height(2.dp)
                     .fillMaxWidth()
-                    .background(color = if (textState.value.isEmpty()) Color.LightGray else Color.Blue))
+                    .background(
+                        color = if (textState.value.isEmpty()) Color.LightGray else Color(
+                            0xFF297EF9
+                        )
+                    ))
             }
         }
     }
@@ -118,12 +130,16 @@ fun InputBoxUnderlineVersionDeco(placeHolder: String, value: String, onClick: ()
                         Text(
                             text = placeHolder,
                             color = Color.Gray,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Normal,
                         )
                     else
                         Text(
                             text = value,
                             maxLines = 1,
                             modifier = Modifier.widthIn(240.dp, 350.dp),
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Normal,
                         )
                     Surface(
                         shape = MaterialTheme.shapes.large,
@@ -196,14 +212,15 @@ fun InputBoxRectVersion(placeHolder: String) {
                                 maxLines = 1,
                                 fontSize = 14.sp,
                             )
-                            Surface(
-                                shape = MaterialTheme.shapes.large,
+                            Image(
+                                painter = painterResource(id = R.drawable.clear),
+                                contentDescription = "clear",
                                 modifier = Modifier
                                     .size(20.dp)
-                                    .align(Alignment.CenterVertically),
-                                color = Color.Gray,
-                                onClick = { textState.value = "" }
-                            ) {}
+                                    .align(Alignment.CenterVertically)
+                                    .clickable{ textState.value = "" },
+                                colorFilter = ColorFilter.lighting(Color.Black, Color.Gray)
+                            )
                         }
                     }
                 }
@@ -242,7 +259,7 @@ fun InputBoxCleanVersion(placeHolder: String, value: String, onTextChange: (newT
                 }
                 else -> {
                     Text(
-                        text = value + "원",
+                        text = formattedNumber(value) + "원",
                         maxLines = 1,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
@@ -281,6 +298,6 @@ fun InputBoxRectVersionPreview() {
 @Composable
 fun InputBoxCleanVersionPreview() {
     TossCloneProjectTheme {
-        InputBoxCleanVersion("얼마나 보낼까요?", "", {})
+        InputBoxCleanVersion("얼마나 보낼까요?", "") {}
     }
 }
