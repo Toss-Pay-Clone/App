@@ -24,7 +24,7 @@ import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
 fun TransferSelectPage(modifier: Modifier = Modifier) {
-    var isAccountMode = remember {
+    val isAccountMode = remember {
         mutableStateOf(true)
     }
     Surface(
