@@ -19,14 +19,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.NavHost
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tosscloneproject.Login.Compose.InputDots
 import com.example.tosscloneproject.Login.Compose.NumberBoard
 import com.example.tosscloneproject.Login.OnBoarding.NAV_ROUTE
-import com.example.tosscloneproject.Login.OnBoarding.NavigationGraph
 import com.example.tosscloneproject.Login.OnBoarding.RouteAction
 import com.example.tosscloneproject.mainPage.MainPageView
 import com.example.tosscloneproject.ui.theme.TextColor3
@@ -42,7 +40,7 @@ fun LoginNavigation (startRoute: NAV_ROUTE = NAV_ROUTE.Login) {
 
         composable(NAV_ROUTE.Login.routeName) { LoginPage (routeAction = routeAction)}
         composable(NAV_ROUTE.Success.routeName) { SuccessPage(routeAction = routeAction)}
-        composable(NAV_ROUTE.MainPage.routeName) { MainPageView()}
+        composable(NAV_ROUTE.MainPage.routeName) { MainPageView(navController = navController)}
     }
 }
 

@@ -78,7 +78,7 @@ fun RegisterNavigation (startRoute: NAV_ROUTE = NAV_ROUTE.Name) {
             CheckPage(routeAction=routeAction, userNameViewModel = userNameViewModel,
                 birthNumberViewModel = birthNumberViewModel, genderNumberViewModel = genderNumberViewModel,
                 phoneNumberViewModel = phoneNumberViewModel, telecomViewModel = telecomViewModel)}
-        composable(NAV_ROUTE.MainPage.routeName){ MainPageView() }
+        composable(NAV_ROUTE.MainPage.routeName){ MainPageView(navController = navController) }
     }
 }
 
