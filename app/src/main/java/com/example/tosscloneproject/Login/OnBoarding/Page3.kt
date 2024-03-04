@@ -15,17 +15,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.tosscloneproject.Login.Compose.PhoneNumberViewModel
 import com.example.tosscloneproject.Login.Compose.PhonenumberInput
 import com.example.tosscloneproject.ui.theme.TextColor2
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
-fun Page3 () {
+fun Page3 (phoneNumberViewModel: PhoneNumberViewModel) {
     Column {
         Page3TextContainer()
         Spacer(modifier = Modifier.height(40.dp))
         Box(modifier = Modifier.padding(start = 28.dp, end = 28.dp)){
-            PhonenumberInput(inputplaceholder = "휴대폰 번호")
+            PhonenumberInput(inputplaceholder = "휴대폰 번호") { newPhone ->
+                phoneNumberViewModel.setPhoneNumber(newPhone)
+            }
         }
         Spacer(modifier = Modifier.height(40.dp))
     }
@@ -61,6 +64,6 @@ fun Page3TextContainer() {
 fun Page3Preview() {
     TossCloneProjectTheme {
 
-        Page3()
+
     }
 }

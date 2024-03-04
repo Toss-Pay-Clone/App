@@ -14,16 +14,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tosscloneproject.Login.Compose.Button
 import com.example.tosscloneproject.Login.Compose.UserInput
+import com.example.tosscloneproject.Login.Compose.UserNameViewModel
+import com.example.tosscloneproject.Login.OnBoarding.NAV_ROUTE
+import com.example.tosscloneproject.Login.OnBoarding.RouteAction
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 class Name : ComponentActivity() {
@@ -36,7 +37,7 @@ class Name : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NamePage()
+
                 }
             }
         }
@@ -44,9 +45,10 @@ class Name : ComponentActivity() {
 }
 
 @Composable
-fun NamePage() {
+fun NamePage(routeAction: RouteAction, userNameViewModel: UserNameViewModel) {
     val typography = MaterialTheme.typography
-    var userName by remember { mutableStateOf("") }
+//    val viewModel : UserNameViewModel = viewModel()
+    val userName by userNameViewModel.userName.collectAsState()
 
     Column (modifier = Modifier.fillMaxSize()){
 
@@ -64,7 +66,9 @@ fun NamePage() {
             Spacer(modifier = Modifier.height(36.dp))
             Column {
                 Text(text = "이름", style = typography.labelSmall)
-                UserInput(inputplaceholder = "")
+                UserInput (inputplaceholder = "") { newName ->
+                    userNameViewModel.setUserName(newName)
+                }
             }
         }
 
@@ -72,8 +76,8 @@ fun NamePage() {
 
         Button(
             buttonText = "확인",
-            paddingValues = PaddingValues(start = 180.dp, end = 180.dp, top = 21.dp, bottom = 21.dp),
-            shape = RectangleShape
+            paddingValues = PaddingValues(start = 189.5.dp, end = 189.5.dp, top = 21.dp, bottom = 21.dp),
+            shape = RectangleShape, route = NAV_ROUTE.ResidentNumber, routeAction = routeAction
         )
     }
 }
@@ -84,6 +88,6 @@ fun NamePage() {
 fun NamePreview() {
     TossCloneProjectTheme {
 
-        NamePage()
+
     }
 }
