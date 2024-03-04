@@ -1,4 +1,4 @@
-가package com.example.tosscloneproject.connectConfirm
+package com.example.tosscloneproject.connectConfirm
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
