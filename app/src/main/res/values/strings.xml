@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TossCloneProject</string>
+    <string name="ConfirmText">토스는 다른 은행의 자동이체 시스템을 이용해서 돈을 보내요. 나희수님의 계좌에 자동이체가 등록된 것이 아니에요. 나희수님의 확인 없이는 절대 돈이 빠져나가지 않으니 안심하세요.</string>
 </resources>
