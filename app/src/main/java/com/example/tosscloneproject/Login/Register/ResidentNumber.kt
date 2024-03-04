@@ -1,7 +1,6 @@
 package com.example.tosscloneproject.Login.Register
 
 import android.os.Bundle
-import android.os.UserHandle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -18,17 +17,21 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.tosscloneproject.Login.Compose.NumberInput
+import com.example.tosscloneproject.Login.Compose.BirthNumberInput
+import com.example.tosscloneproject.Login.Compose.BirthNumberViewModel
+import com.example.tosscloneproject.Login.Compose.GenderNumberInput
+import com.example.tosscloneproject.Login.Compose.GenderNumberViewModel
 import com.example.tosscloneproject.Login.Compose.UserInput
+import com.example.tosscloneproject.Login.Compose.UserNameViewModel
+import com.example.tosscloneproject.Login.OnBoarding.NAV_ROUTE
+import com.example.tosscloneproject.Login.OnBoarding.RouteAction
 import com.example.tosscloneproject.R
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
@@ -42,25 +45,29 @@ class ResidentNumber : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ResidentNumberPage()
+
                 }
             }
         }
     }
 }
 
+
 @Composable
-fun ResidentNumberPage() {
+fun ResidentNumberPage(routeAction: RouteAction, userNameViewModel: UserNameViewModel,
+                       birthNumberViewModel: BirthNumberViewModel, genderNumberViewModel: GenderNumberViewModel) {
     val typography = MaterialTheme.typography
     val image = painterResource(R.drawable.number_image)
-    var userName by  remember { mutableStateOf("") }
+    val userName by userNameViewModel.userName.collectAsState()
+    val birthNumber by birthNumberViewModel.birthNumber.collectAsState()
+    val genderNumber by genderNumberViewModel.genderNumber.collectAsState()
 
     Column (modifier = Modifier.fillMaxSize()){
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 28.dp, top = 84.dp),
+                .padding(start = 28.dp, end = 28.dp, top = 84.dp),
             verticalArrangement = Arrangement.spacedBy(36.dp)
         ) {
 
@@ -73,11 +80,15 @@ fun ResidentNumberPage() {
                 Text(text = "주민등록번호", style = typography.labelSmall)
                 Row ( verticalAlignment = Alignment.CenterVertically ){
                     Box(modifier = Modifier.width(134.dp)) {
-                        NumberInput(inputplaceholder = "")
+                        BirthNumberInput(inputplaceholder = "") { newBirth ->
+                            birthNumberViewModel.setBirthNumber(newBirth)
+                        }
                     }
                     Text(text = " - ", style = typography.titleLarge)
                     Box(modifier = Modifier.width(45.dp)) {
-                        NumberInput(inputplaceholder = "")
+                        GenderNumberInput(inputplaceholder = "",
+                            onDone = {routeAction.navTo(NAV_ROUTE.Telecom)}) { newGender ->
+                            genderNumberViewModel.setGenderNumber(newGender) }
                     }
                     Spacer(modifier = Modifier.width(7.dp))
                     Image(painter = image, contentDescription = "Number")
@@ -86,11 +97,14 @@ fun ResidentNumberPage() {
 
             Column {
                 Text(text = "이름", style = typography.labelSmall)
-                UserInput( inputplaceholder = userName )
+                UserInput (inputplaceholder = "$userName") { newName ->
+                    userNameViewModel.setUserName(newName)
+                }
+                }
             }
         }
     }
-}
+
 
 
 @Preview(showBackground = true)
@@ -98,6 +112,5 @@ fun ResidentNumberPage() {
 fun ResidentNumberPagePreview() {
     TossCloneProjectTheme {
 
-        ResidentNumberPage()
     }
 }
