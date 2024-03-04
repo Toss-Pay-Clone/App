@@ -30,12 +30,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.tosscloneproject.R
 import com.example.tosscloneproject.ui.theme.TossBlue
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
-fun Bank() {
+fun Bank(navController: NavHostController) {
     val selectedBanks = remember { mutableStateListOf<String>() } // 선택된 은행 리스트를 추적합니다.
     val selectedCount = remember { mutableIntStateOf(0) } // 선택된 은행의 개수를 추적합니다.
     Column(
@@ -111,7 +113,9 @@ fun Bank() {
 
             if (selectedCount.intValue > 0) { // 선택된 은행이 하나 이상일 때만 버튼을 표시합니다.
                 Button(
-                    onClick = {},
+                    onClick = {
+                        navController.navigate(route = "TossCertification")
+                    },
                     contentPadding = PaddingValues(8.dp),
                     modifier = Modifier
                         .padding(horizontal = 20.dp)
@@ -193,6 +197,7 @@ fun DeselectAll(selectedBanks: MutableList<String>, selectedCount: MutableState<
 @Preview(showBackground = true)
 fun BankPreview() {
     TossCloneProjectTheme {
-        Bank()
+        val navController = rememberNavController()
+        Bank(navController = navController)
     }
 }

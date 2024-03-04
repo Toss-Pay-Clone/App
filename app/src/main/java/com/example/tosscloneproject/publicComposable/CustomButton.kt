@@ -13,13 +13,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.tosscloneproject.ui.theme.TossBlue
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
-fun CustomButton(contents: String) {
+fun CustomButton(contents: String, navController: NavHostController, route: String) {
     Button(
-        onClick = {},
+        onClick = {
+            navController.navigate(route = route)
+        },
         contentPadding = PaddingValues(8.dp),
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(25),
@@ -36,6 +40,7 @@ fun CustomButton(contents: String) {
 @Preview(showBackground = true)
 fun CustomButtonPreview() {
     TossCloneProjectTheme {
-        CustomButton(contents = "커스텀")
+        val navController = rememberNavController()
+        CustomButton(contents = "커스텀", navController = navController, route="")
     }
 }

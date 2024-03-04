@@ -34,12 +34,12 @@ fun TossCertificationView(navController: NavHostController) {
     ) {
         TopBar(navController = navController)
         Spacer(modifier = Modifier.height(40.dp))
-        Containter()
+        Containter(navController = navController)
     }
 }
 
 @Composable
-fun Containter() {
+fun Containter(navController: NavHostController) {
     Column(
         modifier = Modifier
             .padding(horizontal = 20.dp)
@@ -78,7 +78,9 @@ fun Containter() {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CustomButton(contents = "다음")
+            CustomButton(contents = "다음",
+                navController = navController,
+                route = "ConnectBank")
             Text(
                 text = "다른방법으로인증",
                 fontSize = 14.sp,

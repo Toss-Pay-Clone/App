@@ -33,11 +33,11 @@ fun ConnectBankView(navController: NavHostController) {
     ) {
         TopBar(navController = navController)
         Spacer(modifier = Modifier.height(40.dp))
-        Container()
+        Container(navController = navController)
     }
 }
 @Composable
-fun Container() {
+fun Container(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -93,7 +93,9 @@ fun Container() {
         Column(
             modifier = Modifier.padding(bottom = 20.dp)
         ) {
-            CustomButton(contents = "다음")
+            CustomButton(contents = "다음",
+                navController = navController,
+                route = "ConnectConfirm1")
         }
     }
 }

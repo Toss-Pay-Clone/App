@@ -17,7 +17,7 @@ fun SelectBankView(navController: NavHostController) {
             .background(Color.White)
     ) {
         TopBar(navController = navController)
-        Bank()
+        Bank(navController = navController)
     }
 }
 
