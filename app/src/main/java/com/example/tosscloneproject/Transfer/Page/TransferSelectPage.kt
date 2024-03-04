@@ -39,7 +39,11 @@ fun TransferSelectPage(modifier: Modifier = Modifier) {
 
             if (isAccountMode.value)
                 Column(Modifier.padding(horizontal = 10.dp, vertical = 5.dp)) {
-                    inputBoxUnderlineVersion(placeHolder = "계좌번호 입력")
+                    Surface(
+                        onClick = { /* */}
+                    ) {
+                        inputBoxUnderlineVersion(placeHolder = "계좌번호 입력")
+                    }
                     Spacer(modifier = Modifier.height(40.dp))
                     Column {
                         MyAccount()
