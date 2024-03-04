@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.tosscloneproject.R
@@ -41,16 +42,20 @@ fun TopBar(navController: NavHostController) {
                     navController.navigate("mainPage") // 뒤로가기
                 }
             )
-            Text(text = "편집")
+            Text(text = "편집",
+                fontSize = 16.sp)
         }
         Row(
             modifier = Modifier
                 .padding(vertical = 10.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly) {
-            Text(text = "자산")
-            Text(text = "자산 굴리기")
-            Text(text = "대출 찾기")
+            Text(text = "자산",
+                fontSize = 16.sp)
+            Text(text = "자산 굴리기",
+                fontSize = 16.sp)
+            Text(text = "대출 찾기",
+                fontSize = 16.sp)
         }
     }
 }
