@@ -27,7 +27,7 @@ fun SelectTransfer(isAccountMode: Boolean, onChange: (Boolean) -> Unit) {
         Modifier
             .padding(horizontal = 10.dp)
             .fillMaxWidth()) {
-        Text(text = "어디로 돈을 보낼까요?", style = androidx.compose.ui.text.TextStyle(fontSize = 24.sp))
+        TransferTitle(title = "어디로 돈을 보낼까요?")
 
         Spacer(modifier = Modifier.height(30.dp))
 
