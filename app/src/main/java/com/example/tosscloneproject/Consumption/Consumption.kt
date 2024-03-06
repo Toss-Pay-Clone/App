@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
@@ -53,13 +54,13 @@ fun ConsumptionPage() {
 
         TopMenu()
 
-        Column (Modifier.verticalScroll(rememberScrollState())){
-            Month()
-            Graph()
+        LazyColumn (){
+            item {Month()}
+            item {Graph()}
 
-            Spacer(modifier = Modifier.height(16.dp))
+            item { Spacer(modifier = Modifier.height(16.dp)) }
 
-            Calendar()
+            item { Calendar() }
 //            DailyTransactionList()
         }
 

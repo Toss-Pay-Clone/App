@@ -33,6 +33,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tosscloneproject.Login.Compose.Button
+import com.example.tosscloneproject.Login.Compose.NorouteButton
+import com.example.tosscloneproject.Login.OnBoarding.NAV_ROUTE
 import com.example.tosscloneproject.R
 import com.example.tosscloneproject.ui.theme.TextBlack
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
@@ -97,9 +99,10 @@ fun Month() {
             Text(text = "${spentAmount}원", style = typography.titleLarge)
 
             Box(modifier = Modifier.width(65.dp)) {
-                Button(buttonText = "분석",
+                NorouteButton(buttonText = "분석",
                     paddingValues = PaddingValues(start = 15.dp, end = 15.dp, top = 5.dp, bottom = 5.dp),
-                    shape = RoundedCornerShape(8.dp)
+                    shape = RoundedCornerShape(8.dp),
+
                 )
             }
         }

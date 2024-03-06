@@ -44,27 +44,24 @@ fun DailyTransactionList() {
     val transactions = transactionViewModel.transactions.collectAsState()
     val typography = MaterialTheme.typography
 
-    Column (
-        Modifier
+
+    Column (Modifier
             .fillMaxWidth()
             .padding(start = 28.dp, end = 28.dp)
             .background(Color.White)){
-
-        Column {
             Text(
                 text = LocalDate.now().format(DateTimeFormatter.ofPattern("dd일 EEE요일")),
                 style = typography.labelSmall.copy(color = TextColor2))
 
             Spacer(modifier = Modifier.height(22.dp))
-
-            LazyColumn {
-                itemsIndexed(transactions.value) {index, transaction ->
-                    TransactionItem(transaction)
-                }
-            }
+    }
+    LazyColumn {
+        itemsIndexed(transactions.value) {index, transaction ->
+            TransactionItem(transaction)
         }
     }
-}
+    }
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
