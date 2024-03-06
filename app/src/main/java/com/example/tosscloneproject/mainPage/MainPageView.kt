@@ -13,23 +13,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainPageView() {
+fun MainPageView(navController: NavHostController) {
     Scaffold(
         containerColor = Color(0xFFF3F4F6),
         topBar = { TopBar() },
         bottomBar = { BottomNavigationBar() },
     ) {
-        ScrollContent()
+        ScrollContent(navController = navController)
     }
 }
 
 @Composable
-fun ScrollContent() {
+fun ScrollContent(navController: NavHostController) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -40,7 +42,7 @@ fun ScrollContent() {
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
         Container2()
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
-        Container3()
+        Container3(navController = navController) // 내 자산 페이지 이동
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
         Container4()
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
@@ -58,6 +60,6 @@ fun ScrollContent() {
 @Composable
 fun MainPageViewPreview() {
     TossCloneProjectTheme {
-        MainPageView()
-    }
+        val navController = rememberNavController()
+        MainPageView(navController = navController)    }
 }

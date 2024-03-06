@@ -44,6 +44,7 @@ class Login : ComponentActivity() {
 
 
 
+
 //@Composable
 //fun RegisterNavigation (startRoute: NAV_ROUTE = NAV_ROUTE.Name) {
 //
@@ -81,6 +82,7 @@ class Login : ComponentActivity() {
 //        composable(NAV_ROUTE.MainPage.routeName){ MainPageView() }
 //    }
 //}
+
 
 
 

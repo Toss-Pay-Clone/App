@@ -69,6 +69,7 @@ import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -89,6 +90,7 @@ fun GreetingPreview() {
         ConsumptionPage()
     }
 }
+
 
 
 

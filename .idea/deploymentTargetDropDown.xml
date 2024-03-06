@@ -2,7 +2,16 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="MainActivityPreview">
+      <entry key="TransferSelectPagePreview">
+        <State />
+      </entry>
+      <entry key="InputBoxPreview">
+        <State />
+      </entry>
+      <entry key="SelectTransferPreview">
+        <State />
+      </entry>
+      <entry key="app">
         <State />
       </entry>
     </value>

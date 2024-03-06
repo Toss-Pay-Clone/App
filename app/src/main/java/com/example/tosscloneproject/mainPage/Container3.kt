@@ -2,6 +2,7 @@ package com.example.tosscloneproject.mainPage
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -24,11 +25,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.tosscloneproject.R
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 
 @Composable
-fun Container3() {
+fun Container3(navController: NavHostController) {
     // wrapper
     Column(
         modifier = Modifier
@@ -141,6 +144,9 @@ fun Container3() {
         Row(
             modifier = Modifier
                 .padding(20.dp, 0.dp, 20.dp, 20.dp)
+                .clickable {
+                    navController.navigate("checkPassword")
+                }
         ) {
             Text(text = "계좌・대출・증권・포인트 보기", color = Color(0xFF6B7684), fontSize = 15.sp)
             Image(
@@ -154,6 +160,7 @@ fun Container3() {
 @Composable
 fun Container3Preview() {
     TossCloneProjectTheme {
-        Container3()
+        val navController = rememberNavController()
+        Container3(navController = navController)
     }
 }
