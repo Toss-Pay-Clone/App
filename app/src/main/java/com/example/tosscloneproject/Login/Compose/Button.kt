@@ -14,10 +14,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.tosscloneproject.Login.OnBoarding.NAV_ROUTE
+import com.example.tosscloneproject.Login.OnBoarding.RouteAction
 import com.example.tosscloneproject.ui.theme.TossBlue
 
 @Composable
-fun Button (buttonText : String, paddingValues: PaddingValues, shape: Shape = RoundedCornerShape(15.dp)) {
+fun Button (buttonText : String, paddingValues: PaddingValues, shape: Shape = RoundedCornerShape(15.dp),
+            route: NAV_ROUTE, routeAction: RouteAction,
+            onClickAction: () -> Unit = { routeAction.navTo(route) } ) {
     val typography = MaterialTheme.typography
 
     Column ( modifier = Modifier
@@ -29,7 +33,29 @@ fun Button (buttonText : String, paddingValues: PaddingValues, shape: Shape = Ro
             shape = shape,
             colors = ButtonDefaults.buttonColors(TossBlue),
             contentPadding = paddingValues,
-            onClick = { }) {
+            onClick = onClickAction ) {
+
+            Text(text = "$buttonText",
+                style = typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
+                color = Color.White)
+        }
+    }
+}
+
+@Composable
+fun NorouteButton (buttonText : String, paddingValues: PaddingValues, shape: Shape = RoundedCornerShape(15.dp)) {
+    val typography = MaterialTheme.typography
+
+    Column ( modifier = Modifier
+        .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        androidx.compose.material3.Button(
+            enabled = true,
+            shape = shape,
+            colors = ButtonDefaults.buttonColors(TossBlue),
+            contentPadding = paddingValues,
+            onClick = {  }) {
 
             Text(text = "$buttonText",
                 style = typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
