@@ -1,6 +1,8 @@
 package com.example.tosscloneproject.Login.Register
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -21,6 +23,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,8 +31,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tosscloneproject.Login.Compose.BirthNumberInput
 import com.example.tosscloneproject.Login.Compose.BirthNumberViewModel
 import com.example.tosscloneproject.Login.Compose.Button
@@ -37,11 +45,14 @@ import com.example.tosscloneproject.Login.Compose.GenderNumberInput
 import com.example.tosscloneproject.Login.Compose.GenderNumberViewModel
 import com.example.tosscloneproject.Login.Compose.PhoneNumberViewModel
 import com.example.tosscloneproject.Login.Compose.PhonenumberInput
+import com.example.tosscloneproject.Login.Compose.SignUpViewModel
+import com.example.tosscloneproject.Login.Compose.SignUpViewModelFactory
 import com.example.tosscloneproject.Login.Compose.TelecomViewModel
 import com.example.tosscloneproject.Login.Compose.UserInput
 import com.example.tosscloneproject.Login.Compose.UserNameViewModel
 import com.example.tosscloneproject.Login.OnBoarding.NAV_ROUTE
 import com.example.tosscloneproject.Login.OnBoarding.RouteAction
+import com.example.tosscloneproject.Login.signUpApiService
 import com.example.tosscloneproject.R
 import com.example.tosscloneproject.ui.theme.TextBlack
 import com.example.tosscloneproject.ui.theme.TextColor1
@@ -80,6 +91,22 @@ fun CheckPage(routeAction: RouteAction, userNameViewModel: UserNameViewModel,
     val phoneNumber by phoneNumberViewModel.phoneNumber.collectAsState()
     val telecom by telecomViewModel.telecom.collectAsState()
 
+    val factory = SignUpViewModelFactory(
+        signUpApiService,
+        userNameViewModel,
+        phoneNumberViewModel,
+        birthNumberViewModel,
+        genderNumberViewModel,
+        telecomViewModel
+    )
+    val viewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {
+        "ViewModelStoreOwner not found"
+    }
+    val lifecycleOwner = checkNotNull(LocalLifecycleOwner.current) {
+        "LifecycleOwner not found"
+    }
+    val signUpViewModel = ViewModelProvider(viewModelStoreOwner, factory).get(SignUpViewModel::class.java)
+
     var showSheet by remember { mutableStateOf(false) }
     var selectedTelecom by remember { mutableStateOf("$telecom") }
 
@@ -89,6 +116,7 @@ fun CheckPage(routeAction: RouteAction, userNameViewModel: UserNameViewModel,
             showSheet = false
         }
     }
+
 
     Column (modifier = Modifier.fillMaxSize()){
 
@@ -104,7 +132,8 @@ fun CheckPage(routeAction: RouteAction, userNameViewModel: UserNameViewModel,
                 style = typography.titleLarge
             )
 
-            PhonenumberInput(inputplaceholder = "$phoneNumber") { newPhone ->
+            PhonenumberInput(inputplaceholder = "$phoneNumber",
+                onDone = {}) { newPhone ->
                 phoneNumberViewModel.setPhoneNumber(newPhone)
             }
 
@@ -150,9 +179,29 @@ fun CheckPage(routeAction: RouteAction, userNameViewModel: UserNameViewModel,
             }
 
             Spacer(modifier = Modifier.height(100.dp))
-            Button(buttonText = "확인",
+            Button(
+                onClickAction = { signUpViewModel.signup() },
+                buttonText = "확인",
                 paddingValues = PaddingValues(start = 152.dp, end = 152.dp, top = 21.dp, bottom = 21.dp),
                 route = NAV_ROUTE.MainPage, routeAction = routeAction)
+
+
+            val signupResult by signUpViewModel.signupResult.collectAsState()
+            Log.d("CheckPage", "signupResult is $signupResult")
+            val context = LocalContext.current
+
+            LaunchedEffect(signupResult) {
+                signupResult.let { isSuccess ->
+                    Log.d("CheckPage", signupResult.toString())
+                    Log.d("CheckPage", "LaunchedEffect executed")
+                    if (isSuccess == true) {
+                        routeAction.navTo(NAV_ROUTE.MainPage)
+                    } else {
+                        Toast.makeText(context, "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
         }
     }
 }

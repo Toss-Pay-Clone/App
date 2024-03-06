@@ -10,6 +10,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tosscloneproject.Login.Compose.InputDots
 import com.example.tosscloneproject.Login.Compose.NumberBoard
+import com.example.tosscloneproject.Login.Compose.UserNameViewModel
 import com.example.tosscloneproject.Login.OnBoarding.NAV_ROUTE
 import com.example.tosscloneproject.Login.OnBoarding.RouteAction
 import com.example.tosscloneproject.ui.theme.TextColor2
@@ -32,9 +35,8 @@ import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 import kotlinx.coroutines.delay
 
 @Composable
-fun SuccessPage ( routeAction: RouteAction ) {
-
-    var typography = MaterialTheme.typography
+fun SuccessPage ( routeAction: RouteAction) {
+    val typography = MaterialTheme.typography
 
     LaunchedEffect(Unit) {
         delay(2000L)
@@ -58,7 +60,7 @@ fun SuccessPage ( routeAction: RouteAction ) {
 
             Spacer(modifier = Modifier.height(30.dp))
             Text(
-                text = "오채영님,\n환영합니다!",
+                text = "환영합니다!",
                 textAlign = TextAlign.Center,
                 style = typography.titleLarge.copy(lineHeight = 45.sp))
         }

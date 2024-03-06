@@ -35,7 +35,7 @@ class Login : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    RegisterNavigation()
+//                    RegisterNavigation()
                 }
             }
         }
@@ -44,43 +44,45 @@ class Login : ComponentActivity() {
 
 
 
-@Composable
-fun RegisterNavigation (startRoute: NAV_ROUTE = NAV_ROUTE.Name) {
 
-    // 네비게이션 컨트롤러
-    val navController = rememberNavController()
+//@Composable
+//fun RegisterNavigation (startRoute: NAV_ROUTE = NAV_ROUTE.Name) {
+//
+//    // 네비게이션 컨트롤러
+//    val navController = rememberNavController()
+//
+//    // 네비게이션 라우트 액션
+//    val routeAction = remember(navController) { RouteAction(navController) }
+//
+//    val userNameViewModel : UserNameViewModel = viewModel()
+//    val birthNumberViewModel : BirthNumberViewModel = viewModel()
+//    val genderNumberViewModel : GenderNumberViewModel = viewModel()
+//    val telecomViewModel : TelecomViewModel = viewModel()
+//    val phoneNumberViewModel : PhoneNumberViewModel = viewModel()
+//
+//    // NavHost로 네비게이션 결정
+//    // 네비게이션 연결할 페이지 설정
+//    NavHost( navController, startRoute.routeName ) {
+//
+//        // 라우트 이름 = 화면의 키
+//            // 화면 = 값
+//        composable(NAV_ROUTE.Name.routeName){
+//            NamePage(routeAction=routeAction, userNameViewModel = userNameViewModel)}
+//        composable(NAV_ROUTE.ResidentNumber.routeName){
+//            ResidentNumberPage(routeAction=routeAction, userNameViewModel = userNameViewModel,
+//                birthNumberViewModel = birthNumberViewModel, genderNumberViewModel = genderNumberViewModel)}
+//        composable(NAV_ROUTE.Telecom.routeName){
+//            TelecomPage(routeAction=routeAction, userNameViewModel = userNameViewModel,
+//                birthNumberViewModel = birthNumberViewModel, genderNumberViewModel = genderNumberViewModel,
+//                telecomViewModel = telecomViewModel)}
+//        composable(NAV_ROUTE.Check.routeName){
+//            CheckPage(routeAction=routeAction, userNameViewModel = userNameViewModel,
+//                birthNumberViewModel = birthNumberViewModel, genderNumberViewModel = genderNumberViewModel,
+//                phoneNumberViewModel = phoneNumberViewModel, telecomViewModel = telecomViewModel)}
+//        composable(NAV_ROUTE.MainPage.routeName){ MainPageView() }
+//    }
+//}
 
-    // 네비게이션 라우트 액션
-    val routeAction = remember(navController) { RouteAction(navController) }
-
-    val userNameViewModel : UserNameViewModel = viewModel()
-    val birthNumberViewModel : BirthNumberViewModel = viewModel()
-    val genderNumberViewModel : GenderNumberViewModel = viewModel()
-    val telecomViewModel : TelecomViewModel = viewModel()
-    val phoneNumberViewModel : PhoneNumberViewModel = viewModel()
-
-    // NavHost로 네비게이션 결정
-    // 네비게이션 연결할 페이지 설정
-    NavHost( navController, startRoute.routeName ) {
-
-        // 라우트 이름 = 화면의 키
-            // 화면 = 값
-        composable(NAV_ROUTE.Name.routeName){
-            NamePage(routeAction=routeAction, userNameViewModel = userNameViewModel)}
-        composable(NAV_ROUTE.ResidentNumber.routeName){
-            ResidentNumberPage(routeAction=routeAction, userNameViewModel = userNameViewModel,
-                birthNumberViewModel = birthNumberViewModel, genderNumberViewModel = genderNumberViewModel)}
-        composable(NAV_ROUTE.Telecom.routeName){
-            TelecomPage(routeAction=routeAction, userNameViewModel = userNameViewModel,
-                birthNumberViewModel = birthNumberViewModel, genderNumberViewModel = genderNumberViewModel,
-                telecomViewModel = telecomViewModel)}
-        composable(NAV_ROUTE.Check.routeName){
-            CheckPage(routeAction=routeAction, userNameViewModel = userNameViewModel,
-                birthNumberViewModel = birthNumberViewModel, genderNumberViewModel = genderNumberViewModel,
-                phoneNumberViewModel = phoneNumberViewModel, telecomViewModel = telecomViewModel)}
-        composable(NAV_ROUTE.MainPage.routeName){ MainPageView(navController = navController) }
-    }
-}
 
 
 
@@ -88,7 +90,7 @@ fun RegisterNavigation (startRoute: NAV_ROUTE = NAV_ROUTE.Name) {
 @Composable
 fun LoginPreview() {
     TossCloneProjectTheme {
-        RegisterNavigation()
+//        RegisterNavigation()
 
     }
 }

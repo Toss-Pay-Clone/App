@@ -86,6 +86,7 @@ fun GenderNumberInput (inputplaceholder:String, onDone: ()-> Unit = {},
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PhonenumberInput (inputplaceholder:String, TrailingIcon: Boolean = true,
+                      onDone: ()-> Unit,
                       onValueChange: (String) -> Unit) {
     var phoneNumber by remember { mutableStateOf(inputplaceholder) }
     val typography = MaterialTheme.typography
@@ -98,6 +99,7 @@ fun PhonenumberInput (inputplaceholder:String, TrailingIcon: Boolean = true,
         placeholder = { Text(text = "$inputplaceholder", style = typography.labelMedium, color = TextColor1) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+        keyboardActions = KeyboardActions( onDone = {onDone()} ),
         trailingIcon = { if (TrailingIcon) { IconButton(onClick = { phoneNumber = "" }) {
             Icon(painter = painterResource(id = R.drawable.clear), contentDescription = null)
         }

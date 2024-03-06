@@ -19,7 +19,20 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.tosscloneproject.Login.Compose.AnimatedPageSlide
+import com.example.tosscloneproject.Login.Compose.BirthNumberViewModel
+import com.example.tosscloneproject.Login.Compose.GenderNumberViewModel
 import com.example.tosscloneproject.Login.Compose.PhoneNumberViewModel
+import com.example.tosscloneproject.Login.Compose.TelecomViewModel
+import com.example.tosscloneproject.Login.Compose.UserNameViewModel
+import com.example.tosscloneproject.Login.Login.LoginFailedPage
+import com.example.tosscloneproject.Login.Login.LoginPage
+import com.example.tosscloneproject.Login.Login.SuccessPage
+import com.example.tosscloneproject.Login.LoginViewModel
+import com.example.tosscloneproject.Login.Register.CheckPage
+import com.example.tosscloneproject.Login.Register.NamePage
+import com.example.tosscloneproject.Login.Register.ResidentNumberPage
+import com.example.tosscloneproject.Login.Register.TelecomPage
+import com.example.tosscloneproject.mainPage.MainPageView
 import com.example.tosscloneproject.ui.theme.TossCloneProjectTheme
 import kotlinx.coroutines.delay
 
@@ -46,6 +59,7 @@ enum class NAV_ROUTE (val routeName: String, val description: String) {
     Page2("Page2", "메세지 전송 화면"),
     Page3("Page3", "휴대폰 입력 화면"),
     Login("Login","비밀번호 입력 화면"),
+    LoginFailed("LoginFailed","비밀번호 다시 입력"),
     Success("Success","로그인 성공시 나오는 화면"),
     Name("Name","회원가입 이름 입력 화면"),
     ResidentNumber("ResidentNumber","주민등록번호 입력 화면"),
@@ -73,6 +87,10 @@ fun NavigationGraph (startRoute: NAV_ROUTE = NAV_ROUTE.Page1) {
     // 네비게이션 라우트 액션
     val routeAction = remember(navController) { RouteAction(navController) }
     val phoneNumberViewModel : PhoneNumberViewModel = viewModel()
+    val userNameViewModel : UserNameViewModel = viewModel()
+    val birthNumberViewModel : BirthNumberViewModel = viewModel()
+    val genderNumberViewModel : GenderNumberViewModel = viewModel()
+    val telecomViewModel : TelecomViewModel = viewModel()
 
     // 애니메이션
     val visible = remember { mutableStateOf(false) }
@@ -99,8 +117,39 @@ fun NavigationGraph (startRoute: NAV_ROUTE = NAV_ROUTE.Page1) {
             }}
         composable(NAV_ROUTE.Page3.routeName){
             AnimatedPageSlide(visible = visible.value) {
-                Page3(phoneNumberViewModel = phoneNumberViewModel)
+                Page3(phoneNumberViewModel = phoneNumberViewModel,
+                    routeAction = routeAction)
             } }
+        composable(NAV_ROUTE.Name.routeName){
+            NamePage(routeAction=routeAction, userNameViewModel = userNameViewModel)
+        }
+        composable(NAV_ROUTE.ResidentNumber.routeName){
+            ResidentNumberPage(routeAction=routeAction, userNameViewModel = userNameViewModel,
+                birthNumberViewModel = birthNumberViewModel, genderNumberViewModel = genderNumberViewModel)
+        }
+        composable(NAV_ROUTE.Telecom.routeName){
+            TelecomPage(routeAction=routeAction, userNameViewModel = userNameViewModel,
+                birthNumberViewModel = birthNumberViewModel, genderNumberViewModel = genderNumberViewModel,
+                telecomViewModel = telecomViewModel)
+        }
+        composable(NAV_ROUTE.Check.routeName){
+            CheckPage(routeAction=routeAction, userNameViewModel = userNameViewModel,
+                birthNumberViewModel = birthNumberViewModel, genderNumberViewModel = genderNumberViewModel,
+                phoneNumberViewModel = phoneNumberViewModel, telecomViewModel = telecomViewModel)
+        }
+        composable(NAV_ROUTE.Login.routeName) {
+            LoginPage (routeAction = routeAction,
+                loginViewModel = LoginViewModel()
+            )
+        }
+        composable(NAV_ROUTE.Success.routeName) {
+            SuccessPage(routeAction = routeAction)
+        }
+        composable(NAV_ROUTE.LoginFailed.routeName) {
+            LoginFailedPage(routeAction = routeAction,
+                loginViewModel = LoginViewModel())
+        }
+        composable(NAV_ROUTE.MainPage.routeName){ MainPageView() }
 
 
     }

@@ -47,7 +47,6 @@ class Name : ComponentActivity() {
 @Composable
 fun NamePage(routeAction: RouteAction, userNameViewModel: UserNameViewModel) {
     val typography = MaterialTheme.typography
-//    val viewModel : UserNameViewModel = viewModel()
     val userName by userNameViewModel.userName.collectAsState()
 
     Column (modifier = Modifier.fillMaxSize()){

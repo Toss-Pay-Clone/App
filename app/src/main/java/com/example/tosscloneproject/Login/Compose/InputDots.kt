@@ -20,14 +20,14 @@ import com.example.tosscloneproject.ui.theme.TextColor2
 
 @Composable
 fun InputDots(
-    numbers: List<Int> = listOf(),
+    numbers: List<String> = listOf(),
 ) {
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
     ) {
-        for (i in 0..5) {
+        for (i in 0..4) {
             PinIndicator(
                 filled = when (i) {
                     0 -> numbers.isNotEmpty()

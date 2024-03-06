@@ -15,7 +15,7 @@ fun NumberBoard (
 ) {
 
     NumberBoardRow (
-        listOf ("1", "2", "3", "4", "5", "6", "7", "8", "9", "","0",""),
+        listOf ("1", "2", "3", "4", "5", "6", "7", "8", "9", "a","0",""),
         onNumberClick
     )
 }
@@ -25,7 +25,7 @@ fun NumberBoardRow (num: List<String>,
                     onNumberClick: (num:String) -> Unit
 ) {
     val list = (1..9).map { it.toString() }.toMutableList()
-    list.addAll(mutableListOf("","0",""))
+    list.addAll(mutableListOf("a","0",""))
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
